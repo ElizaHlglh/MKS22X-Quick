@@ -69,7 +69,17 @@ public static int partition ( int [] data, int start, int end){
 /*return the value that is the kth smallest value of the array.
 */
 public static int quickselect(int []data, int k){
-  return 1;
+  //first try if random got it
+  int trial = partition(data, 0, data.length);
+  while (trial != k){
+    if (trial < k){
+      trial = partition(data, trial + 1, data.length);
+    }
+    else{
+      trial = partition(data, 0 , trial - 1);
+    }
+  }
+  return data[trial];
 }
 
 
