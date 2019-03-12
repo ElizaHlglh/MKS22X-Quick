@@ -53,11 +53,23 @@ public static int partition ( int [] data, int start, int end){
       end--;
     }
   }
+  if (data[l] <= pivot){ //comparing the last value
+    data[start] = data[l];
+    data[l] = pivot;
+    return l;
+  }
+  else{
+    //if the last value is greater than pivot:
+    //pivot will swap with the value before that larger value
+    data[start] = data[l-1];
+    data[l-1] = pivot;
+    return l-1;
+  }
 }
 /*return the value that is the kth smallest value of the array.
 */
 public static int quickselect(int []data, int k){
-
+  return 1;
 }
 
 
