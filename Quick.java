@@ -15,7 +15,7 @@ public static int partition ( int [] data, int start, int end){
   data[start] = pivot;
   data[ranInd] = first;
   ranInd = start;
-  while (start + 1 < end){
+  /*while (start + 1 < end){
     if (data[start+1] <= data[start]){ //if the next value is less than or equal to current/pivot
       data[start] = data[start+1];
       data[start+1] = pivot;
@@ -36,7 +36,28 @@ public static int partition ( int [] data, int start, int end){
     data[end] = pivot;
     start++;
   }
-  return start;
+  return start;*/
+  if (end == start) {//if there is only one value
+    return start;
+  }
+  int l = start+1;
+  int h = end;
+  while (l != end){
+    if (data[l] <= data[start]){//if the value is less that pivot
+      l++;
+    }
+    else{//if the value is greater than pivot, sawp it with the end value
+      int toPushBack = data[l];
+      data[l] = data[end];
+      data[end] = toPushBack;
+      end--;
+    }
+  }
+}
+/*return the value that is the kth smallest value of the array.
+*/
+public static int quickselect(int []data, int k){
+
 }
 
 
