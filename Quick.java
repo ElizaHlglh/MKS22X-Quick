@@ -54,6 +54,7 @@ public static int partition ( int [] data, int start, int end){
     }
   }
   if (data[l] <= pivot){ //comparing the last value
+    //System.out.println("last value is l? : " + l + " and start/pivot is : " + start);
     data[start] = data[l];
     data[l] = pivot;
     return l;
@@ -70,16 +71,28 @@ public static int partition ( int [] data, int start, int end){
 */
 public static int quickselect(int []data, int k){
   //first try if random got it
-  int trial = partition(data, 0, data.length);
+  int start = 0;
+  int end = data.length-1;
+  int trial = partition(data, start, end);
   while (trial != k){
     if (trial < k){
-      trial = partition(data, trial + 1, data.length);
+      start = trial+1;
+      trial = partition(data, start, end);
     }
     else{
-      trial = partition(data, 0 , trial - 1);
+      end = trial-1;
+      trial = partition(data, start , end);
     }
   }
   return data[trial];
+}
+
+public static String printAry(int[] ary){
+  String ans = "";
+  for (int i = 0; i < ary.length; i++){
+    ans += ans + ary[i] + ", ";
+  }
+  return ans;
 }
 
 

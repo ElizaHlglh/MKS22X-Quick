@@ -33,6 +33,7 @@ public class driver {
         //System.out.println(Arrays.toString(data2));
         int index2a = Quick.partition(data2, 2, 7);
         System.out.println("2a: " + test(data2, index2a,2,7));
+        System.out.println("2a currently: " + data2);
         //System.out.println(Arrays.toString(data2) + " " + index2a+"\n");
         //System.out.println(Arrays.toString(data2));
         int index2b = Quick.partition(data2, 1, 4);
