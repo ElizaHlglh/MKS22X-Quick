@@ -95,5 +95,23 @@ public static String printAry(int[] ary){
   return ans;
 }
 
+/*Modify the array to be in increasing order.
+ */
+ public static void quicksort(int[] data){
+   quicksort(data, 0, data.length);
+ }
+
+ public static void quicksort(int[] data, int lo, int hi){
+   if (lo >= hi){
+     return;
+   }
+   else{
+     int pivot = partition(data, lo, hi);
+     quicksort(data, lo, pivot-1);
+     quicksort(data, pivot+1, hi);
+   }
+
+ }
+
 
 }
