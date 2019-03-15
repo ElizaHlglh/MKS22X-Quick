@@ -68,7 +68,7 @@ public static int partitionO ( int [] data, int start, int end){
   }
 }
 
-public static int partition ( int [] data, int start, int end){
+public static int partition1 ( int [] data, int start, int end){
   int ranInd = (int) (Math.random() * (end+1 -start) + start); //generate a random index
   int pivot = data[ranInd];
   //switch the first value with the pivot value to compare
@@ -85,6 +85,56 @@ public static int partition ( int [] data, int start, int end){
   while (front != back){//before only one value left
     if (data[front] <= pivot){
       front++; //if the value is <= pivot, it stays in front and we move to next value to compare
+    }
+    else{
+      int toPushBack = data[front];
+      data[front] = data[back]; //switch the front value with the back value when front is larger than back.
+      data[back] = toPushBack;
+      back--;
+    }
+  }
+  //front is now == to back
+  if (data[front] <= pivot){
+    data[start] = data[front];//if the last value is smaller, switch place with pivot that is in the start
+    data[front] = pivot;
+    return front;
+  }
+  else{
+    data[start] = data[back-1]; //if last value is larger, switch the value before the last value with pivot
+    data[back-1] = pivot;
+    return back-1;
+  }
+}
+
+public static int partition ( int [] data, int start, int end){
+  int ranInd = (int) (Math.random() * (end+1 -start) + start); //generate a random index
+  int pivot = data[ranInd];
+  //switch the first value with the pivot value to compare
+  int first = data[start];
+  data[start] = pivot;
+  data[ranInd] = first;
+  ranInd = start;//fresh the start back to beginning
+  int back = end; //j is the last value
+  if (end == start) {//if there is only one value
+    return start;
+  }
+  int front = start+1;
+  //start is the current loc of pivot; front is the front value needed to be compared; end is the back value;
+  while (front != back){//before only one value left
+    if (data[front] < pivot){
+      front++; //if the value is <= pivot, it stays in front and we move to next value to compare
+    }
+    else if(data[front] == pivot){
+      int side = (int) (Math.random() * 2);
+      if (side == 0){
+        front++;
+      }
+      else{
+        int goBack = data[front];
+        data[front] = data[back];
+        data[back] = goBack;
+        back--;
+      }
     }
     else{
       int toPushBack = data[front];
