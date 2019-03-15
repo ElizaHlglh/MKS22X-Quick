@@ -7,7 +7,7 @@ public class Quick{
  *4. all elements in range that are larger than the pivot element are placed after the pivot element.
  *@return the index of the final position of the pivot element.
  */
-public static int partition ( int [] data, int start, int end){
+public static int partitionO ( int [] data, int start, int end){
   int ranInd = (int) (Math.random() * (end+1 -start) + start); //generate a random index
   int pivot = data[ranInd];
   //switch the first value with the pivot value to compare
@@ -67,6 +67,45 @@ public static int partition ( int [] data, int start, int end){
     return l-1;
   }
 }
+
+public static int partition ( int [] data, int start, int end){
+  int ranInd = (int) (Math.random() * (end+1 -start) + start); //generate a random index
+  int pivot = data[ranInd];
+  //switch the first value with the pivot value to compare
+  int first = data[start];
+  data[start] = pivot;
+  data[ranInd] = first;
+  ranInd = start;//fresh the start back to beginning
+  int back = end; //j is the last value
+  if (end == start) {//if there is only one value
+    return start;
+  }
+  int front = start+1;
+  //start is the current loc of pivot; front is the front value needed to be compared; end is the back value;
+  while (front != back){//before only one value left
+    if (data[front] <= pivot){
+      front++; //if the value is <= pivot, it stays in front and we move to next value to compare
+    }
+    else{
+      int toPushBack = data[front];
+      data[front] = data[back]; //switch the front value with the back value when front is larger than back.
+      data[back] = toPushBack;
+      back--;
+    }
+  }
+  //front is now == to back
+  if (data[front] <= pivot){
+    data[start] = data[front];//if the last value is smaller, switch place with pivot that is in the start
+    data[front] = pivot;
+    return front;
+  }
+  else{
+    data[start] = data[back-1]; //if last value is larger, switch the value before the last value with pivot
+    data[back-1] = pivot;
+    return back-1;
+  }
+}
+
 /*return the value that is the kth smallest value of the array.
 */
 public static int quickselect(int []data, int k){
@@ -98,7 +137,7 @@ public static String printAry(int[] ary){
 /*Modify the array to be in increasing order.
  */
  public static void quicksort(int[] data){
-   quicksort(data, 0, data.length);
+   quicksort(data, 0, data.length-1);
  }
 
  public static void quicksort(int[] data, int lo, int hi){
