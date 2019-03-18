@@ -142,15 +142,16 @@ public static String printAry(int[] ary){
 
 //testing for dutch
  public void quicksortDutch(int[] data){
+   System.out.println("Test");
    quicksortDutch(data, 0, data.length-1);
  }
 
  public void quicksortDutch(int[] data, int lo, int hi){
-   if (lo == 0 && hi == data.length-1){
+   int[] result = partitionDutch(data, lo, hi);
+   if (result[0] == 0 && result[1] == data.length-1){
      return;
    }
    else{
-     int[] result = partitionDutch(data, lo, hi);
      if (result[0] == 0){ //if the front is already sorted, sort the back
        quicksortDutch(data, result[1], hi);
      }
@@ -162,7 +163,6 @@ public static String printAry(int[] ary){
        quicksortDutch(data, lo, result[0]);
      }
    }
-
  }
 
 }
